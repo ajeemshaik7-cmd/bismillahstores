@@ -1,0 +1,423 @@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bismillah Cement, Iron, Hardware and General Stores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0; padding: 0; width: 100%; height: 100%; box-sizing: border-box; background: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+        body { min-height: 100vh; width: 100vw; overflow-x: hidden; }
+
+        header {
+            background: linear-gradient(135deg, #12326B 0%, #1479C3 80%, #62B5E5 100%);
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0.6rem 0.7rem 0.6rem;
+            box-shadow: 0 6px 20px #1479c325;
+            width: 100vw;
+            position: relative;
+        }
+        .brand-title {
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.6rem;
+            margin-top: 0.3rem;
+        }
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.3rem;
+            margin-bottom: 0.1rem;
+        }
+        .nav-btn {
+            padding: 0.38rem 0.92rem;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #62B5E5 0%, #12326B 100%);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.97rem;
+            letter-spacing: 0.03em;
+            min-width: 70px;
+            margin: 0 1.5px;
+            box-shadow: 0 0.5px 4px #002d7222;
+            cursor: pointer;
+            outline: none;
+            transition: transform 0.13s, background 0.15s;
+        }
+        .nav-btn:hover, .nav-btn:focus {
+            background: linear-gradient(90deg, #12326B 0%, #62B5E5 100%);
+            transform: translateY(-1px) scale(1.04);
+        }
+        main {
+            max-width: 900px;
+            margin: 1rem auto 4.3rem auto;
+            background: white;
+            border-radius: 1.1rem;
+            box-shadow: 0 0 14px #bbbdbf42;
+            padding: 1rem 0.1rem 1.5rem 0.1rem;
+            width: 100vw;
+        }
+        .section {
+            margin-bottom: 2rem;
+            padding: 0 1vw;
+            width: 100%;
+        }
+        /* HOME as wallpapered hero section */
+        #about {
+            position: relative;
+            min-height: 540px; /* Increased for tall section */
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 1.1rem;
+            background: #000; /* fallback behind transparent areas */
+        }
+        #about .wallpaper-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;         /* ensures full image shown, no cropping */
+            object-position: center;
+            z-index: 0;
+            background: #000;
+        }
+        #about::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,rgba(24,46,77,0.35) 0%, rgba(20,121,195,0.18) 90%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        #about-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 670px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.1rem 1rem 2.2rem 1rem;
+        }
+        #about .section-btn-title {
+            margin-top: 0.1rem;
+            margin-bottom: 1.1rem;
+            font-size: 1.1rem;
+            background: rgba(98,181,229,0.92);
+        }
+        /*---- other sections ----*/
+        .section-btn-title {
+            display: inline-block;
+            background: linear-gradient(90deg, #1479C3 0%, #62B5E5 80%);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.97rem;
+            font-weight: 600;
+            padding: 0.33em 1.12em;
+            margin-bottom: 0.7rem;
+            margin-top: 0.4rem;
+            box-shadow: 0 0.5px 6px #1479c320;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            outline: none;
+            transition: background 0.13s, transform 0.09s;
+        }
+        .section-btn-title:hover, .section-btn-title:focus {
+            background: linear-gradient(90deg, #62B5E5 0%, #1479C3 100%);
+            transform: scale(1.03);
+        }
+        /* --- CAROUSEL SQUARE+SMALLER --- */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;   /* adjust for size */
+            margin: 1rem auto 0.6rem auto;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #002d7210;
+            box-shadow: 0 1.5px 8px #bbbdbf34;
+            aspect-ratio: 1 / 1;
+        }
+        .carousel-slide {display: none; text-align: center;}
+        .carousel-slide img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            max-height: none;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .carousel-description {
+            margin-top: 0.45rem;
+            font-size: 0.98rem;
+            color: #1279c3;
+            background: #ecf4fb;
+            border-radius: 4px;
+            padding: 6px 8px 6px 10px;
+            display: inline-block;
+        }
+        .carousel-nav {
+            position: absolute;
+            top: 45%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+        .carousel-btn {
+            background: linear-gradient(90deg,#62B5E5 0%,#1479C3 100%);
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            pointer-events: all;
+            line-height: 26px;
+            margin: 1px 2px;
+            transition: background 0.13s;
+        }
+        .carousel-btn:hover, .carousel-btn:focus {
+            background: linear-gradient(90deg,#1479C3 0%,#62B5E5 100%);
+        }
+        .carousel-indicator { text-align: center; margin-top: 5px; }
+        .carousel-dot {
+            display: inline-block;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            margin: 0 2px;
+            background: #c4d60088;
+            cursor: pointer;
+            transition: background 0.13s;
+        }
+        .carousel-dot.active { background: #1479C3; }
+        ul {padding-left: 1.1rem; margin: 0.2rem 0 0.1rem 0;}
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 48%;
+            position: relative;
+            height: 0;
+            border-radius: 9px;
+            margin-top: 0.4rem;
+            box-shadow: 0 1px 8px #bbbdbf33;
+        }
+        .map-responsive iframe {
+            left: 0; top: 0; height: 100%; width: 100%; position: absolute; border: 0;
+        }
+        .open-map-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #62B5E5 0%, #1479C3 100%);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            font-size: 0.97rem;
+            font-weight: 600;
+            padding: 0.32em 1em;
+            margin: 10px 0 0 0;
+            box-shadow: 0 1px 4px #1479c319;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: background 0.13s, transform 0.09s;
+            cursor: pointer;
+        }
+        .open-map-btn:hover, .open-map-btn:focus {
+            background: linear-gradient(90deg, #1479C3 0%, #62B5E5 100%);
+            transform: scale(1.04);
+        }
+        footer {
+            background: #12326B;
+            color: white;
+            text-align: center;
+            padding: 0.8rem 0.2rem;
+            font-size: 0.96rem;
+            width: 100vw;
+            box-sizing: border-box;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+        }
+        @media (max-width: 650px) {
+            header {padding: 0.95rem 0.35rem 0.6rem 0.35rem;}
+            .brand-title {font-size:1rem;}
+            .nav-btn {font-size:0.89rem; padding:0.32rem 0.85rem;}
+            main {padding:0.25rem 0 2.3rem 0;}
+            .section-btn-title {font-size:0.89rem; padding:0.18em 0.55em;}
+            #about-content {
+                padding: 1.25rem 0.32rem 1.25rem 0.33rem;
+                font-size: 0.97rem;
+            }
+            #about {
+                min-height: 240px;
+            }
+        }
+        @media (max-width:420px){
+            .brand-title{font-size:.93rem;}
+            .section {padding:0 4px;}
+            .carousel-container {
+                max-width: 95vw;
+            }
+            #about { min-height: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand-title">Bismillah Cement, Iron, Hardware and General Stores</div>
+        <nav class="nav-bar">
+            <button class="nav-btn" onclick="scrollToSection('about')">Home</button>
+            <button class="nav-btn" onclick="scrollToSection('products')">Products</button>
+            <button class="nav-btn" onclick="scrollToSection('gallery')">Gallery</button>
+            <button class="nav-btn" onclick="scrollToSection('location')">Location</button>
+            <button class="nav-btn" onclick="scrollToSection('contact')">Contact</button>
+        </nav>
+    </header>
+    <main>
+        <!-- HOME: Wallpaper background with overlay and content on top -->
+        <section class="section" id="about">
+            <img class="wallpaper-bg" src="images/1000013906.jpg" alt="Store Wallpaper" loading="eager">
+            <div id="about-content">
+                <button class="section-btn-title">Home</button>
+                <p>
+                Bismillah Cement, Iron, Hardware and General Stores supplies top-quality cement, iron rods, steel bars, and all essential building materials and general hardware for construction and renovation. Reliable service, affordable prices, and expert advice—your trusted partner for every project.
+                </p>
+            </div>
+        </section>
+        <section class="section" id="products">
+            <button class="section-btn-title">Products</button>
+            <ul>
+                <li>Cement (all major brands, 50kg bags)</li>
+                <li>Iron Rods (8mm, 10mm, 12mm, 16mm)</li>
+                <li>Steel Bars (Ribbed/TMT)</li>
+                <li>Binding Wire & Angle Iron</li>
+                <li>Nails, Fasteners & Construction Tools</li>
+                <li>PVC Pipes & Fittings</li>
+                <li>Chain Link, GI Wire</li>
+                <li>Electrical, Paints, and More General Store Items</li>
+            </ul>
+        </section>
+        <section class="section" id="gallery">
+            <button class="section-btn-title">Gallery</button>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="images/1.jpg" alt="Cement Bags">
+                    <div class="carousel-description">Premium Cement Bags from Leading Brands</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/2.jpg" alt="Iron Rods">
+                    <div class="carousel-description">Iron Rods in Multiple Sizes for Structural Strength</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/3.jpg" alt="Steel Bars">
+                    <div class="carousel-description">High-Tensile Steel Bars: Ribbed & TMT</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/4.jpg" alt="Binding Wire">
+                    <div class="carousel-description">Binding Wire & Angle Iron for Construction</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/5.jpg" alt="Hardware Tools">
+                    <div class="carousel-description">Top-Quality Hardware Tools</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/6.jpg" alt="General Store View">
+                    <div class="carousel-description">General Store Section: Everyday Essentials</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/7.jpg" alt="Nails and Fasteners">
+                    <div class="carousel-description">All Sizes of Nails, Fasteners, and Fittings</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/8.jpg" alt="PVC Pipes">
+                    <div class="carousel-description">Durable PVC Pipes & Fittings</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/9.jpg" alt="Electrical Supplies">
+                    <div class="carousel-description">Lighting, Wiring & Electrical Supplies</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/10.jpg" alt="Paints & Accessories">
+                    <div class="carousel-description">Paints, Brushes & Home Decor Accessories</div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prevBtn">&#10094;</button>
+                    <button class="carousel-btn" id="nextBtn">&#10095;</button>
+                </div>
+                <div class="carousel-indicator" id="carouselDots"></div>
+            </div>
+        </section>
+        <section class="section" id="location">
+            <button class="section-btn-title">Location</button>
+            <p style="font-weight:500;">2935+F88, Siripuram (PM), Telangana 507304</p>
+            <div class="map-responsive">
+                <iframe src="https://www.google.com/maps?q=2935%2BF88,+Siripuram+(PM),+Telangana+507304&z=15&output=embed" allowfullscreen="" loading="lazy" title="Shop Location"></iframe>
+            </div>
+            <a class="open-map-btn" href="https://maps.app.goo.gl/iQLdaJb8q5eVaCRM8" target="_blank" rel="noopener">Open in Google Maps</a>
+        </section>
+        <section class="section" id="contact">
+            <button class="section-btn-title">Contact</button>
+            <div style="line-height:1.7;">
+                <p><strong>Email:</strong> bismillahironshop791@gmail.com</p>
+                <p><strong>Phone 1:</strong> 9866736791<br><strong>Phone 2:</strong> 6301836289</p>
+                <p><strong>Address:</strong> Siripuram (PM),Madhira (MDL), Khammam (DST), Telangana 507304</p>
+                <p><strong>Business Hours:</strong> Everyday, 7am–8pm</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Bismillah Cement, Iron, Hardware and General Stores
+    </footer>
+    <script>
+    // Code Generated by Sidekick is for learning and experimentation purposes only.
+    // Carousel Logic
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById('carouselDots');
+    let currentSlide = 0;
+    let autoSlideInterval;
+    function showSlide(index) {
+        if (index >= slides.length) currentSlide = 0;
+        else if (index < 0) currentSlide = slides.length - 1;
+        else currentSlide = index;
+        slides.forEach((slide, idx) => {
+            slide.style.display = idx === currentSlide ? "block" : "none";
+        });
+        document.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentSlide);
+        });
+    }
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+    slides.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+        dot.addEventListener('click', () => showSlide(idx));
+        dotsContainer.appendChild(dot);
+    });
+    document.getElementById('prevBtn').onclick = prevSlide;
+    document.getElementById('nextBtn').onclick = nextSlide;
+    function startAutoSlide() { stopAutoSlide(); autoSlideInterval = setInterval(nextSlide, 4700); }
+    function stopAutoSlide() { if (autoSlideInterval) clearInterval(autoSlideInterval); }
+    document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoSlide);
+    document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoSlide);
+    showSlide(currentSlide);
+    startAutoSlide();
+    // Smooth Scroll Navigation
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    </script>
+</body>
+</html>
