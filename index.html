@@ -1,423 +1,731 @@
-<! DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Bismillah Cement, Iron, Hardware and General Stores</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        html, body {
-            margin: 0; padding: 0; width: 100%; height: 100%; box-sizing: border-box; background: #f3f3f3;
-            font-family: Arial, sans-serif;
-        }
-        body { min-height: 100vh; width: 100vw; overflow-x: hidden; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
 
-        header {
-            background: linear-gradient(135deg, #12326B 0%, #1479C3 80%, #62B5E5 100%);
-            color: #fff;
-            text-align: center;
-            padding: 1.2rem 0.6rem 0.7rem 0.6rem;
-            box-shadow: 0 6px 20px #1479c325;
-            width: 100vw;
-            position: relative;
-        }
-        .brand-title {
-            font-family: 'Poppins', Arial, sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: 0.04em;
-            margin-bottom: 0.6rem;
-            margin-top: 0.3rem;
-        }
-        .nav-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.3rem;
-            margin-bottom: 0.1rem;
-        }
-        .nav-btn {
-            padding: 0.38rem 0.92rem;
-            border: none;
-            border-radius: 20px;
-            background: linear-gradient(90deg, #62B5E5 0%, #12326B 100%);
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.97rem;
-            letter-spacing: 0.03em;
-            min-width: 70px;
-            margin: 0 1.5px;
-            box-shadow: 0 0.5px 4px #002d7222;
-            cursor: pointer;
-            outline: none;
-            transition: transform 0.13s, background 0.15s;
-        }
-        .nav-btn:hover, .nav-btn:focus {
-            background: linear-gradient(90deg, #12326B 0%, #62B5E5 100%);
-            transform: translateY(-1px) scale(1.04);
-        }
-        main {
-            max-width: 900px;
-            margin: 1rem auto 4.3rem auto;
-            background: white;
-            border-radius: 1.1rem;
-            box-shadow: 0 0 14px #bbbdbf42;
-            padding: 1rem 0.1rem 1.5rem 0.1rem;
-            width: 100vw;
-        }
-        .section {
-            margin-bottom: 2rem;
-            padding: 0 1vw;
-            width: 100%;
-        }
-        /* HOME as wallpapered hero section */
-        #about {
-            position: relative;
-            min-height: 540px; /* Increased for tall section */
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 1.1rem;
-            background: #000; /* fallback behind transparent areas */
-        }
-        #about .wallpaper-bg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;         /* ensures full image shown, no cropping */
-            object-position: center;
-            z-index: 0;
-            background: #000;
-        }
-        #about::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg,rgba(24,46,77,0.35) 0%, rgba(20,121,195,0.18) 90%);
-            z-index: 1;
-            pointer-events: none;
-        }
-        #about-content {
-            position: relative;
-            z-index: 2;
-            color: #fff;
-            max-width: 670px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2.1rem 1rem 2.2rem 1rem;
-        }
-        #about .section-btn-title {
-            margin-top: 0.1rem;
-            margin-bottom: 1.1rem;
-            font-size: 1.1rem;
-            background: rgba(98,181,229,0.92);
-        }
-        /*---- other sections ----*/
-        .section-btn-title {
-            display: inline-block;
-            background: linear-gradient(90deg, #1479C3 0%, #62B5E5 80%);
-            color: #fff;
-            border: none;
-            border-radius: 20px;
-            font-size: 0.97rem;
-            font-weight: 600;
-            padding: 0.33em 1.12em;
-            margin-bottom: 0.7rem;
-            margin-top: 0.4rem;
-            box-shadow: 0 0.5px 6px #1479c320;
-            letter-spacing: 0.03em;
-            cursor: pointer;
-            outline: none;
-            transition: background 0.13s, transform 0.09s;
-        }
-        .section-btn-title:hover, .section-btn-title:focus {
-            background: linear-gradient(90deg, #62B5E5 0%, #1479C3 100%);
-            transform: scale(1.03);
-        }
-        /* --- CAROUSEL SQUARE+SMALLER --- */
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 400px;   /* adjust for size */
-            margin: 1rem auto 0.6rem auto;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #002d7210;
-            box-shadow: 0 1.5px 8px #bbbdbf34;
-            aspect-ratio: 1 / 1;
-        }
-        .carousel-slide {display: none; text-align: center;}
-        .carousel-slide img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            max-height: none;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .carousel-description {
-            margin-top: 0.45rem;
-            font-size: 0.98rem;
-            color: #1279c3;
-            background: #ecf4fb;
-            border-radius: 4px;
-            padding: 6px 8px 6px 10px;
-            display: inline-block;
-        }
-        .carousel-nav {
-            position: absolute;
-            top: 45%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            pointer-events: none;
-        }
-        .carousel-btn {
-            background: linear-gradient(90deg,#62B5E5 0%,#1479C3 100%);
-            border: none;
-            color: white;
-            font-size: 1.25rem;
-            cursor: pointer;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            pointer-events: all;
-            line-height: 26px;
-            margin: 1px 2px;
-            transition: background 0.13s;
-        }
-        .carousel-btn:hover, .carousel-btn:focus {
-            background: linear-gradient(90deg,#1479C3 0%,#62B5E5 100%);
-        }
-        .carousel-indicator { text-align: center; margin-top: 5px; }
-        .carousel-dot {
-            display: inline-block;
-            height: 8px;
-            width: 8px;
-            border-radius: 50%;
-            margin: 0 2px;
-            background: #c4d60088;
-            cursor: pointer;
-            transition: background 0.13s;
-        }
-        .carousel-dot.active { background: #1479C3; }
-        ul {padding-left: 1.1rem; margin: 0.2rem 0 0.1rem 0;}
-        .map-responsive {
-            overflow: hidden;
-            padding-bottom: 48%;
-            position: relative;
-            height: 0;
-            border-radius: 9px;
-            margin-top: 0.4rem;
-            box-shadow: 0 1px 8px #bbbdbf33;
-        }
-        .map-responsive iframe {
-            left: 0; top: 0; height: 100%; width: 100%; position: absolute; border: 0;
-        }
-        .open-map-btn {
-            display: inline-block;
-            background: linear-gradient(90deg, #62B5E5 0%, #1479C3 100%);
-            color: #fff;
-            border: none;
-            border-radius: 18px;
-            font-size: 0.97rem;
-            font-weight: 600;
-            padding: 0.32em 1em;
-            margin: 10px 0 0 0;
-            box-shadow: 0 1px 4px #1479c319;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: background 0.13s, transform 0.09s;
-            cursor: pointer;
-        }
-        .open-map-btn:hover, .open-map-btn:focus {
-            background: linear-gradient(90deg, #1479C3 0%, #62B5E5 100%);
-            transform: scale(1.04);
-        }
-        footer {
-            background: #12326B;
-            color: white;
-            text-align: center;
-            padding: 0.8rem 0.2rem;
-            font-size: 0.96rem;
-            width: 100vw;
-            box-sizing: border-box;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-        }
-        @media (max-width: 650px) {
-            header {padding: 0.95rem 0.35rem 0.6rem 0.35rem;}
-            .brand-title {font-size:1rem;}
-            .nav-btn {font-size:0.89rem; padding:0.32rem 0.85rem;}
-            main {padding:0.25rem 0 2.3rem 0;}
-            .section-btn-title {font-size:0.89rem; padding:0.18em 0.55em;}
-            #about-content {
-                padding: 1.25rem 0.32rem 1.25rem 0.33rem;
-                font-size: 0.97rem;
-            }
-            #about {
-                min-height: 240px;
-            }
-        }
-        @media (max-width:420px){
-            .brand-title{font-size:.93rem;}
-            .section {padding:0 4px;}
-            .carousel-container {
-                max-width: 95vw;
-            }
-            #about { min-height: 120px; }
-        }
-    </style>
+  <title>Bismillah Stores, Siripuram | Cement • Iron • PVC • Rentals</title>
+  <meta name="description" content="Bismillah Cement, Iron, Hardware & General Stores — Siripuram. Cement, steel, PVC pipes, fittings, electrical items and construction rental items." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --text:#eaf0ff;
+      --muted:#b8c3e6;
+      --line:rgba(255,255,255,.12);
+      --brand:#2f7cf6;
+      --brand2:#7c4dff;
+      --ok:#22c55e;
+      --warn:#f59e0b;
+
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius: 18px;
+
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:
+        radial-gradient(1200px 600px at 15% 5%, rgba(47,124,246,.25), transparent 55%),
+        radial-gradient(900px 500px at 85% 10%, rgba(124,77,255,.22), transparent 55%),
+        radial-gradient(900px 500px at 50% 95%, rgba(34,197,94,.12), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1120px; margin:0 auto; padding:0 18px}
+
+    /* Header */
+    .header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(11,18,32,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:14px;
+    }
+    .brand{display:flex; align-items:center; gap:12px; min-width:240px}
+    .brand img{
+      width:44px; height:44px; object-fit:cover; border-radius:12px;
+      box-shadow:0 10px 26px rgba(0,0,0,.35);
+      background:#0a1020;
+    }
+    .brand .name{display:flex; flex-direction:column}
+    .brand .name strong{font-size:14.5px; letter-spacing:.3px}
+    .brand .name span{font-size:12.2px; color:var(--muted)}
+
+    .menu{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+    .menu a{
+      font-size:13.5px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    .menu a:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.04)}
+    .ctaRow{display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width:240px}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:9px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      font-weight:700;
+      font-size:13.2px;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.2)}
+    .btn.primary{
+      border-color:rgba(47,124,246,.55);
+      background:linear-gradient(135deg, rgba(47,124,246,.95), rgba(124,77,255,.85));
+    }
+    .btn.primary:hover{border-color:rgba(47,124,246,.85)}
+    .btn .dot{
+      width:10px; height:10px; border-radius:999px; background:var(--ok);
+      box-shadow:0 0 0 4px rgba(34,197,94,.16);
+    }
+
+    .mobileToggle{
+      display:none;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:12px;
+      padding:10px 12px;
+      color:var(--text);
+      font-weight:800;
+    }
+
+    /* Hero */
+    .hero{padding:44px 0 14px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .heroMain{padding:28px}
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12.6px;
+    }
+    .kicker b{color:var(--text)}
+    h1{
+      margin:14px 0 8px;
+      font-size:34px;
+      line-height:1.15;
+      letter-spacing:.2px;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:15.3px;
+      margin:0 0 16px;
+      max-width:62ch;
+    }
+    .pillRow{display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 18px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 11px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      font-size:13px;
+      color:var(--text);
+    }
+    .pill small{color:var(--muted); font-weight:700}
+    .pill .ic{
+      width:22px; height:22px; border-radius:10px;
+      background:rgba(47,124,246,.18);
+      border:1px solid rgba(47,124,246,.35);
+      display:grid; place-items:center;
+      font-weight:900;
+    }
+    .heroActions{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+
+    .heroSide{padding:18px}
+    .sideCard{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(15,26,51,.72), rgba(12,23,48,.72));
+      padding:16px;
+      box-shadow:0 18px 50px rgba(0,0,0,.35);
+    }
+    .sideTop{display:flex; gap:12px; align-items:center}
+    .sideTop img{
+      width:56px; height:56px; border-radius:18px;
+      object-fit:cover; background:#0a1020;
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .sideTop .t strong{display:block; font-size:14.8px}
+    .sideTop .t span{display:block; font-size:12.6px; color:var(--muted); margin-top:2px}
+    .kv{margin-top:14px; display:grid; gap:10px}
+    .kv .row{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .kv .badge{
+      width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center;
+      background:rgba(124,77,255,.16);
+      border:1px solid rgba(124,77,255,.32);
+      font-weight:900;
+    }
+    .kv .row b{display:block; font-size:12.6px; color:var(--muted)}
+    .kv .row span{display:block; font-weight:800}
+
+    /* Sections */
+    section{padding:26px 0}
+    .sectionHead{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:12px; flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .sectionHead h2{margin:0; font-size:22px}
+    .sectionHead p{margin:0; color:var(--muted); max-width:74ch; font-size:14.2px}
+
+    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
+    .grid2{display:grid; grid-template-columns:repeat(2, 1fr); gap:14px}
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(15,26,51,.62), rgba(12,23,48,.62));
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+    .card h3{margin:0 0 6px; font-size:16px}
+    .card p{margin:0; color:var(--muted); font-size:14px}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .list li{margin:6px 0}
+
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12.4px;
+      margin-top:10px;
+    }
+    .tag i{
+      width:8px; height:8px; border-radius:999px; background:var(--warn);
+      box-shadow:0 0 0 4px rgba(245,158,11,.14);
+    }
+
+    /* Visiting card preview */
+    .imgWrap{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:rgba(255,255,255,.02);
+    }
+    .imgWrap img{width:100%; height:auto; display:block}
+
+    /* Footer */
+    footer{
+      padding:26px 0 40px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .footRow{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center}
+
+    /* Mobile menu */
+    @media (max-width: 960px){
+      .heroGrid{grid-template-columns:1fr}
+      .ctaRow{min-width:auto}
+      .brand{min-width:auto}
+    }
+    @media (max-width: 720px){
+      .menu{display:none}
+      .mobileToggle{display:inline-flex}
+      .grid3{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
+      h1{font-size:28px}
+    }
+    .mobileMenu{display:none; padding:10px 0 14px}
+    .mobileMenu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      margin-top:10px;
+      font-weight:750;
+    }
+
+    /* --- 3D Tata Ace Rotator (CSS-only) --- */
+    .delivery3d{
+      margin-top:14px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .delivery3d .copy b{display:block; font-size:13.4px}
+    .delivery3d .copy span{display:block; font-size:12.8px; color:var(--muted); margin-top:2px}
+    .delivery3d .actions{margin-left:auto; display:flex; gap:10px; flex-wrap:wrap}
+
+    .rotator3d{
+      width:168px;
+      height:110px;
+      flex:0 0 auto;
+      perspective:900px;
+      perspective-origin:50% 45%;
+      display:grid;
+      place-items:center;
+    }
+    .rotator3d .spin{
+      position:relative;
+      width:168px;
+      height:110px;
+      transform-style:preserve-3d;
+      animation:spinY 7s linear infinite;
+      will-change:transform;
+      filter: drop-shadow(0 22px 18px rgba(0,0,0,.45));
+    }
+    .rotator3d .spin::before{
+      content:"";
+      position:absolute;
+      inset:-12px -14px;
+      background:
+        radial-gradient(90px 60px at 35% 30%, rgba(255,255,255,.18), transparent 60%),
+        radial-gradient(120px 90px at 65% 70%, rgba(47,124,246,.10), transparent 70%);
+      transform: translateZ(-1px);
+      pointer-events:none;
+      opacity:.95;
+    }
+    .rotator3d .face{
+      position:absolute;
+      inset:0;
+      border-radius:16px;
+      backface-visibility:hidden;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      background:rgba(0,0,0,.14);
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .rotator3d img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+      transform: translateZ(0.1px);
+    }
+    .rotator3d .back{
+      transform: rotateY(180deg);
+    }
+    .rotator3d .back img{
+      transform: scaleX(-1);
+    }
+
+    @keyframes spinY{
+      0%   { transform: rotateY(0deg) rotateX(2deg); }
+      50%  { transform: rotateY(180deg) rotateX(2deg); }
+      100% { transform: rotateY(360deg) rotateX(2deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .rotator3d .spin{animation:none}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HardwareStore",
+    "name": "Bismillah Cement, Iron, Hardware & General Stores",
+    "alternateName": "Bismillah Stores, Siripuram",
+    "telephone": ["+91 9866736791", "+91 6301836289"],
+    "taxID": "GSTIN: 36BDCPR5979R1ZD",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Beside HP Petrol Bunk, Wyra Road",
+      "addressLocality": "Siripuram",
+      "addressRegion": "Khammam District",
+      "postalCode": "507304",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
 </head>
+
 <body>
-    <header>
-        <div class="brand-title">Bismillah Cement, Iron, Hardware and General Stores</div>
-        <nav class="nav-bar">
-            <button class="nav-btn" onclick="scrollToSection('about')">Home</button>
-            <button class="nav-btn" onclick="scrollToSection('products')">Products</button>
-            <button class="nav-btn" onclick="scrollToSection('gallery')">Gallery</button>
-            <button class="nav-btn" onclick="scrollToSection('location')">Location</button>
-            <button class="nav-btn" onclick="scrollToSection('contact')">Contact</button>
+  <header class="header">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#home" aria-label="Home">
+          <img src="logo.jpg" alt="Bismillah Stores Logo" />
+          <div class="name">
+            <strong>BISMILLAH STORES</strong>
+            <span>Siripuram • Cement • Iron • Hardware • PVC</span>
+          </div>
+        </a>
+
+        <nav class="menu" aria-label="Main menu">
+          <a href="#services">Products</a>
+          <a href="#rentals">Rentals</a>
+          <a href="#whyus">Why Us</a>
+          <a href="#contact">Contact</a>
         </nav>
-    </header>
-    <main>
-        <!-- HOME: Wallpaper background with overlay and content on top -->
-        <section class="section" id="about">
-            <img class="wallpaper-bg" src="images/1000013906.jpg" alt="Store Wallpaper" loading="eager">
-            <div id="about-content">
-                <button class="section-btn-title">Home</button>
-                <p>
-                Bismillah Cement, Iron, Hardware and General Stores supplies top-quality cement, iron rods, steel bars, and all essential building materials and general hardware for construction and renovation. Reliable service, affordable prices, and expert advice—your trusted partner for every project.
-                </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="tel:9866736791" aria-label="Call 9866736791">
+            <span class="dot" aria-hidden="true"></span>
+            Call Now
+          </a>
+          <button class="mobileToggle" id="mobileToggle" aria-controls="mobileMenu" aria-expanded="false">
+            Menu
+          </button>
+        </div>
+      </div>
+
+      <div class="mobileMenu" id="mobileMenu" aria-label="Mobile menu">
+        <a href="#services">Products</a>
+        <a href="#rentals">Rentals</a>
+        <a href="#whyus">Why Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div class="panel heroMain">
+          <div class="kicker">
+            <b>Bismillah</b> Cement, Iron, Hardware & General Stores
+          </div>
+
+          <h1>Everything for Construction—In One Place</h1>
+          <p class="sub">
+            <b>Bismillah Stores, Siripuram</b> supplies Cement, Vizag & Tirupati Steel, PVC Pipes, Fittings,
+            Electrical Items, Iron Pipes, and MS Color Sheets—plus essential construction items on rent.
+          </p>
+
+          <div class="pillRow" aria-label="Highlights">
+            <div class="pill"><span class="ic">✓</span> Cement <small> reliable supply</small></div>
+            <div class="pill"><span class="ic">✓</span> Iron / Steel <small> (TMT)</small></div>
+            <div class="pill"><span class="ic">✓</span> PVC Pipes <small> & fittings</small></div>
+            <div class="pill"><span class="ic">✓</span> Rentals <small> for site work</small></div>
+          </div>
+
+          <div class="heroActions">
+            <a class="btn primary" href="#contact">Check Price / Stock</a>
+            <a class="btn" href="tel:6301836289">Call: 6301836289</a>
+            <a class="btn" href="#visitingcard">View Visiting Card</a>
+          </div>
+        </div>
+
+        <aside class="panel heroSide" aria-label="Contact summary">
+          <div class="sideCard">
+            <div class="sideTop">
+              <img src="logo.jpg" alt="Shop logo" />
+              <div class="t">
+                <strong>BISMILLAH STORES</strong>
+                <span>Siripuram • Wyra Road area</span>
+              </div>
             </div>
-        </section>
-        <section class="section" id="products">
-            <button class="section-btn-title">Products</button>
-            <ul>
-                <li>Cement (all major brands, 50kg bags)</li>
-                <li>Iron Rods (8mm, 10mm, 12mm, 16mm)</li>
-                <li>Steel Bars (Ribbed/TMT)</li>
-                <li>Binding Wire & Angle Iron</li>
-                <li>Nails, Fasteners & Construction Tools</li>
-                <li>PVC Pipes & Fittings</li>
-                <li>Chain Link, GI Wire</li>
-                <li>Electrical, Paints, and More General Store Items</li>
-            </ul>
-        </section>
-        <section class="section" id="gallery">
-            <button class="section-btn-title">Gallery</button>
-            <div class="carousel-container">
-                <div class="carousel-slide">
-                    <img src="images/1.jpg" alt="Cement Bags">
-                    <div class="carousel-description">Premium Cement Bags from Leading Brands</div>
+
+            <div class="kv">
+              <div class="row">
+                <div class="badge">☎</div>
+                <div>
+                  <b>Phone</b>
+                  <span>9866736791 • 6301836289</span>
                 </div>
-                <div class="carousel-slide">
-                    <img src="images/2.jpg" alt="Iron Rods">
-                    <div class="carousel-description">Iron Rods in Multiple Sizes for Structural Strength</div>
+              </div>
+
+              <div class="row">
+                <div class="badge">🧾</div>
+                <div>
+                  <b>GSTIN</b>
+                  <span>36BDCPR5979R1ZD</span>
                 </div>
-                <div class="carousel-slide">
-                    <img src="images/3.jpg" alt="Steel Bars">
-                    <div class="carousel-description">High-Tensile Steel Bars: Ribbed & TMT</div>
+              </div>
+
+              <div class="row">
+                <div class="badge">📍</div>
+                <div>
+                  <b>Address</b>
+                  <span>Beside HP Petrol Bunk, Wyra Road,<br/>Siripuram, Khammam District — 507304</span>
                 </div>
-                <div class="carousel-slide">
-                    <img src="images/4.jpg" alt="Binding Wire">
-                    <div class="carousel-description">Binding Wire & Angle Iron for Construction</div>
+              </div>
+
+              <div class="row">
+                <div class="badge">👤</div>
+                <div>
+                  <b>Proprietor</b>
+                  <span>Prop: Shaik Abul Raheem</span>
                 </div>
-                <div class="carousel-slide">
-                    <img src="images/5.jpg" alt="Hardware Tools">
-                    <div class="carousel-description">Top-Quality Hardware Tools</div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/6.jpg" alt="General Store View">
-                    <div class="carousel-description">General Store Section: Everyday Essentials</div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/7.jpg" alt="Nails and Fasteners">
-                    <div class="carousel-description">All Sizes of Nails, Fasteners, and Fittings</div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/8.jpg" alt="PVC Pipes">
-                    <div class="carousel-description">Durable PVC Pipes & Fittings</div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/9.jpg" alt="Electrical Supplies">
-                    <div class="carousel-description">Lighting, Wiring & Electrical Supplies</div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/10.jpg" alt="Paints & Accessories">
-                    <div class="carousel-description">Paints, Brushes & Home Decor Accessories</div>
-                </div>
-                <div class="carousel-nav">
-                    <button class="carousel-btn" id="prevBtn">&#10094;</button>
-                    <button class="carousel-btn" id="nextBtn">&#10095;</button>
-                </div>
-                <div class="carousel-indicator" id="carouselDots"></div>
+              </div>
             </div>
-        </section>
-        <section class="section" id="location">
-            <button class="section-btn-title">Location</button>
-            <p style="font-weight:500;">2935+F88, Siripuram (PM), Telangana 507304</p>
-            <div class="map-responsive">
-                <iframe src="https://www.google.com/maps?q=2935%2BF88,+Siripuram+(PM),+Telangana+507304&z=15&output=embed" allowfullscreen="" loading="lazy" title="Shop Location"></iframe>
+
+            <div class="tag" title="Please call to confirm">
+              <i aria-hidden="true"></i>
+              Working hours: Call to confirm
             </div>
-            <a class="open-map-btn" href="https://maps.app.goo.gl/iQLdaJb8q5eVaCRM8" target="_blank" rel="noopener">Open in Google Maps</a>
-        </section>
-        <section class="section" id="contact">
-            <button class="section-btn-title">Contact</button>
-            <div style="line-height:1.7;">
-                <p><strong>Email:</strong> bismillahironshop791@gmail.com</p>
-                <p><strong>Phone 1:</strong> 9866736791<br><strong>Phone 2:</strong> 6301836289</p>
-                <p><strong>Address:</strong> Siripuram (PM),Madhira (MDL), Khammam (DST), Telangana 507304</p>
-                <p><strong>Business Hours:</strong> Everyday, 7am–8pm</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <section id="services">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Products We Supply</h2>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>Cement & Construction Supplies</h3>
+          <p>Quality cement and essential building materials.</p>
+          <ul class="list">
+            <li>Cement</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Iron / Steel</h3>
+          <p>Steel products for all construction needs.</p>
+          <ul class="list">
+            <li>Vizag Steel</li>
+            <li>Tirupati Steel</li>
+            <li>Iron rods / Steel rods (TMT)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>PVC Pipes & Fittings</h3>
+          <p>Complete range for plumbing and drainage work.</p>
+          <ul class="list">
+            <li>PVC Pipes</li>
+            <li>Fittings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Electrical Items</h3>
+          <p>Common electrical essentials for homes and sites.</p>
+          <ul class="list">
+            <li>Electrical items</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Other Items</h3>
+          <ul class="list">
+            <li>Iron Pipes</li>
+            <li>Mild Steel Color Sheets</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rentals">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Rental Services (Construction Use)</h2>
+        <p>Call to confirm availability and rates for rental items.</p>
+      </div>
+
+      <div class="card">
+        <h3>Items Available on Rent</h3>
+        <p>Quick access to essential tools and machines on rent.</p>
+        <ul class="list">
+          <li>Pillar Boxes (పిల్లర్ బాక్సులు)</li>
+          <li>Stand (స్టాండ్ )</li>
+          <li>Yagar (యాగర్)</li>
+          <li>Jalede (జల్లేడ)</li>
+          <li>Malat (మలాట్)</li>
+          <li>Cutting Machine (కట్టింగ్ మెషిన్)</li>
+          <li>Drilling Machine (డ్రిల్లింగ్ మెషిన్)</li>
+          <li>Miller (మిల్లర్)</li>
+        </ul>
+
+        <div class="tag">
+          <i aria-hidden="true"></i>
+          Rental rates: Call to know
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="whyus">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Why Bismillah Stores?</h2>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>One-stop Supply</h3>
+          <p>Cement to PVC to hardware—get everything in one place.</p>
+        </div>
+        <div class="card">
+          <h3>Rentals for Site Work</h3>
+          <p>Quick access to essential tools and machines on rent.</p>
+        </div>
+        <div class="card">
+          <h3>Fast Contact</h3>
+          <p>Call directly for stock, pricing, and delivery discussion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visitingcard">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Visiting Card</h2>
+      </div>
+
+      <div class="imgWrap" aria-label="Visiting card image">
+        <img src="visitingcard.jpg" alt="Bismillah Stores visiting card" />
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Contact</h2>
+        <p>For prices, stock, rentals, and delivery details, please call.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Phone</h3>
+          <p style="margin-bottom:10px">Call the number that is convenient for you:</p>
+          <div style="display:flex; flex-wrap:wrap; gap:10px">
+            <a class="btn primary" href="tel:9866736791">Call: 9866736791</a>
+            <a class="btn" href="tel:6301836289">Call: 6301836289</a>
+          </div>
+
+          <div style="height:12px"></div>
+          <h3>GSTIN</h3>
+          <p><b>36BDCPR5979R1ZD</b></p>
+
+          <div style="height:12px"></div>
+          <h3>Proprietor</h3>
+          <p><b>Prop: Shaik Abul Raheem</b></p>
+        </div>
+
+        <!-- Address card with 3D rotating Tata Ace -->
+        <div class="card">
+          <h3>Address</h3>
+          <p style="margin:0 0 10px">
+            <b>Beside HP Petrol Bunk, Wyra Road,</b><br/>
+            Siripuram, Khammam District — <b>507304</b>
+          </p>
+
+          <div class="delivery3d" aria-label="Delivery vehicle information">
+            <div class="rotator3d" aria-hidden="true">
+              <div class="spin">
+                <div class="face front">
+                  <img src="tata acee.png" alt="" />
+                </div>
+                <div class="face back">
+                  <img src="tata acee.png" alt="" />
+                </div>
+              </div>
             </div>
-        </section>
-    </main>
-    <footer>
-        &copy; 2025 Bismillah Cement, Iron, Hardware and General Stores
-    </footer>
-    <script>
+
+            <div class="copy">
+              <b>Delivery Available (Tata Ace)</b>
+              <span>For delivery/vehicle needs, please call in advance.</span>
+            </div>
+
+            <div class="actions">
+              <a class="btn primary" href="tel:9866736791" aria-label="Call for delivery 9866736791">
+                <span class="dot" aria-hidden="true"></span>
+                Call Now
+              </a>
+            </div>
+          </div>
+
+          <div class="tag" style="margin-top:12px">
+            <i aria-hidden="true"></i>
+            For delivery/vehicle needs, call in advance
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footRow">
+        <div>
+          <b style="color:var(--text)">BISMILLAH STORES — Siripuram</b><br/>
+          Cement, Iron, Hardware & General Stores
+        </div>
+        <div>
+          © <span id="year"></span> Bismillah Stores • All rights reserved
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
     // Code Generated by Sidekick is for learning and experimentation purposes only.
-    // Carousel Logic
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dotsContainer = document.getElementById('carouselDots');
-    let currentSlide = 0;
-    let autoSlideInterval;
-    function showSlide(index) {
-        if (index >= slides.length) currentSlide = 0;
-        else if (index < 0) currentSlide = slides.length - 1;
-        else currentSlide = index;
-        slides.forEach((slide, idx) => {
-            slide.style.display = idx === currentSlide ? "block" : "none";
+    (function(){
+      var year = document.getElementById('year');
+      if(year) year.textContent = new Date().getFullYear();
+
+      var toggle = document.getElementById('mobileToggle');
+      var menu = document.getElementById('mobileMenu');
+      if(toggle && menu){
+        toggle.addEventListener('click', function(){
+          var open = menu.style.display === 'block';
+          menu.style.display = open ? 'none' : 'block';
+          toggle.setAttribute('aria-expanded', String(!open));
         });
-        document.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === currentSlide);
+
+        menu.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click', function(){
+            menu.style.display = 'none';
+            toggle.setAttribute('aria-expanded', 'false');
+          });
         });
-    }
-    function nextSlide() { showSlide(currentSlide + 1); }
-    function prevSlide() { showSlide(currentSlide - 1); }
-    slides.forEach((_, idx) => {
-        const dot = document.createElement('span');
-        dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
-        dot.addEventListener('click', () => showSlide(idx));
-        dotsContainer.appendChild(dot);
-    });
-    document.getElementById('prevBtn').onclick = prevSlide;
-    document.getElementById('nextBtn').onclick = nextSlide;
-    function startAutoSlide() { stopAutoSlide(); autoSlideInterval = setInterval(nextSlide, 4700); }
-    function stopAutoSlide() { if (autoSlideInterval) clearInterval(autoSlideInterval); }
-    document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoSlide);
-    document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoSlide);
-    showSlide(currentSlide);
-    startAutoSlide();
-    // Smooth Scroll Navigation
-    function scrollToSection(sectionId) {
-        document.getElementById(sectionId).scrollIntoView({behavior:'smooth', block:'start'});
-    }
-    </script>
+      }
+    })();
+  </script>
 </body>
 </html>
